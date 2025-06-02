@@ -1,15 +1,16 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Search, Users, TrendingUp, TrendingDown, IndianRupee, Eye, Edit, Trash2 } from 'lucide-react';
+import { Plus, Search, Users, TrendingUp, TrendingDown, IndianRupee, Eye, Edit, Trash2, Truck, Package, AlertTriangle } from 'lucide-react';
 import CustomerForm from '@/components/CustomerForm';
 import TransactionForm from '@/components/TransactionForm';
 import DashboardStats from '@/components/DashboardStats';
 import TransactionChart from '@/components/TransactionChart';
+import SupplierForm from '@/components/SupplierForm';
+import InventoryForm from '@/components/InventoryForm';
 
 interface Customer {
   id: string;
@@ -27,6 +28,27 @@ interface Transaction {
   amount: number;
   description: string;
   date: string;
+}
+
+interface Supplier {
+  id: string;
+  name: string;
+  phone: string;
+  address: string;
+  email: string;
+}
+
+interface InventoryItem {
+  id: string;
+  name: string;
+  category: string;
+  quantity: number;
+  unit: string;
+  pricePerUnit: number;
+  supplierId: string;
+  supplierName: string;
+  minStockLevel: number;
+  totalValue: number;
 }
 
 const Index = () => {
@@ -75,9 +97,55 @@ const Index = () => {
     }
   ]);
 
+  const [suppliers, setSuppliers] = useState<Supplier[]>([
+    {
+      id: '1',
+      name: 'Steel Wire Industries',
+      phone: '+91 99887 66554',
+      address: 'Industrial Area, Mumbai',
+      email: 'contact@steelwire.com'
+    },
+    {
+      id: '2',
+      name: 'Stone Craft Suppliers',
+      phone: '+91 88776 65543',
+      address: 'Quarry Road, Rajasthan',
+      email: 'sales@stonecraft.com'
+    }
+  ]);
+
+  const [inventory, setInventory] = useState<InventoryItem[]>([
+    {
+      id: '1',
+      name: 'Galvanized Fence Wire',
+      category: 'Fence Wires',
+      quantity: 150,
+      unit: 'meters',
+      pricePerUnit: 25.50,
+      supplierId: '1',
+      supplierName: 'Steel Wire Industries',
+      minStockLevel: 50,
+      totalValue: 3825
+    },
+    {
+      id: '2',
+      name: 'Concrete Stone Pillars',
+      category: 'Stone Pillars',
+      quantity: 25,
+      unit: 'pieces',
+      pricePerUnit: 450,
+      supplierId: '2',
+      supplierName: 'Stone Craft Suppliers',
+      minStockLevel: 10,
+      totalValue: 11250
+    }
+  ]);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [showCustomerForm, setShowCustomerForm] = useState(false);
   const [showTransactionForm, setShowTransactionForm] = useState(false);
+  const [showSupplierForm, setShowSupplierForm] = useState(false);
+  const [showInventoryForm, setShowInventoryForm] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
   const [activeTab, setActiveTab] = useState('dashboard');
 
@@ -95,6 +163,9 @@ const Index = () => {
   );
 
   const netBalance = totalCredit - totalDebit;
+
+  const totalInventoryValue = inventory.reduce((sum, item) => sum + item.totalValue, 0);
+  const lowStockItems = inventory.filter(item => item.quantity <= item.minStockLevel);
 
   const addCustomer = (customerData: Omit<Customer, 'id' | 'balance' | 'lastTransaction'>) => {
     const newCustomer: Customer = {
@@ -137,6 +208,30 @@ const Index = () => {
     setShowTransactionForm(false);
   };
 
+  const addSupplier = (supplierData: Omit<Supplier, 'id'>) => {
+    const newSupplier: Supplier = {
+      ...supplierData,
+      id: Date.now().toString()
+    };
+    setSuppliers([...suppliers, newSupplier]);
+    setShowSupplierForm(false);
+  };
+
+  const addInventoryItem = (itemData: Omit<InventoryItem, 'id' | 'supplierName' | 'totalValue'>) => {
+    const supplier = suppliers.find(s => s.id === itemData.supplierId);
+    if (!supplier) return;
+
+    const newItem: InventoryItem = {
+      ...itemData,
+      id: Date.now().toString(),
+      supplierName: supplier.name,
+      totalValue: itemData.quantity * itemData.pricePerUnit
+    };
+
+    setInventory([...inventory, newItem]);
+    setShowInventoryForm(false);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
@@ -148,8 +243,8 @@ const Index = () => {
                 <IndianRupee className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">KhataBook</h1>
-                <p className="text-sm text-gray-500">Digital Ledger</p>
+                <h1 className="text-xl font-bold text-gray-900">BNP Fencing Works</h1>
+                <p className="text-sm text-gray-500">Digital Ledger & Inventory</p>
               </div>
             </div>
             <div className="flex items-center space-x-3">
@@ -174,10 +269,11 @@ const Index = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 lg:w-[400px]">
+          <TabsList className="grid w-full grid-cols-5 lg:w-[500px]">
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="customers">Customers</TabsTrigger>
             <TabsTrigger value="transactions">Transactions</TabsTrigger>
+            <TabsTrigger value="suppliers">Suppliers</TabsTrigger>
             <TabsTrigger value="reports">Reports</TabsTrigger>
           </TabsList>
 
@@ -321,6 +417,143 @@ const Index = () => {
             </Card>
           </TabsContent>
 
+          {/* New Suppliers Tab */}
+          <TabsContent value="suppliers" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold">Supplier & Inventory Management</h2>
+              <div className="flex space-x-3">
+                <Button
+                  onClick={() => setShowSupplierForm(true)}
+                  className="bg-blue-600 hover:bg-blue-700"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Supplier
+                </Button>
+                <Button
+                  onClick={() => setShowInventoryForm(true)}
+                  variant="outline"
+                >
+                  <Package className="h-4 w-4 mr-2" />
+                  Add Inventory
+                </Button>
+              </div>
+            </div>
+
+            {/* Inventory Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium opacity-90">Total Inventory Value</CardTitle>
+                  <Package className="h-4 w-4 opacity-90" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">₹{totalInventoryValue.toLocaleString()}</div>
+                  <p className="text-xs opacity-90 mt-1">All items combined</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium opacity-90">Low Stock Items</CardTitle>
+                  <AlertTriangle className="h-4 w-4 opacity-90" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{lowStockItems.length}</div>
+                  <p className="text-xs opacity-90 mt-1">Need restocking</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-r from-teal-500 to-teal-600 text-white">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium opacity-90">Total Suppliers</CardTitle>
+                  <Truck className="h-4 w-4 opacity-90" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{suppliers.length}</div>
+                  <p className="text-xs opacity-90 mt-1">Active suppliers</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Suppliers List */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Truck className="h-5 w-5" />
+                    <span>Suppliers</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {suppliers.map((supplier) => (
+                      <div key={supplier.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-semibold">{supplier.name}</h3>
+                          <div className="flex space-x-1">
+                            <Button variant="ghost" size="sm">
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600">{supplier.phone}</p>
+                        <p className="text-sm text-gray-600">{supplier.email}</p>
+                        <p className="text-sm text-gray-500">{supplier.address}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Inventory List */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Package className="h-5 w-5" />
+                    <span>Inventory Items</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {inventory.map((item) => (
+                      <div key={item.id} className={`p-4 border rounded-lg hover:bg-gray-50 ${item.quantity <= item.minStockLevel ? 'border-orange-200 bg-orange-50' : ''}`}>
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-semibold">{item.name}</h3>
+                          {item.quantity <= item.minStockLevel && (
+                            <Badge variant="destructive" className="text-xs">
+                              <AlertTriangle className="h-3 w-3 mr-1" />
+                              Low Stock
+                            </Badge>
+                          )}
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                          <p>Category: {item.category}</p>
+                          <p>Supplier: {item.supplierName}</p>
+                          <p>Stock: {item.quantity} {item.unit}</p>
+                          <p>Price: ₹{item.pricePerUnit}/{item.unit}</p>
+                        </div>
+                        <div className="flex items-center justify-between mt-2">
+                          <span className="text-sm font-medium">Total Value: ₹{item.totalValue.toLocaleString()}</span>
+                          <div className="flex space-x-1">
+                            <Button variant="ghost" size="sm">
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
           {/* Reports Tab */}
           <TabsContent value="reports" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -368,6 +601,10 @@ const Index = () => {
                         ₹{Math.abs(netBalance).toLocaleString()}
                       </span>
                     </div>
+                    <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
+                      <span className="text-purple-700 font-medium">Inventory Value</span>
+                      <span className="text-purple-700 font-bold">₹{totalInventoryValue.toLocaleString()}</span>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -389,6 +626,21 @@ const Index = () => {
           customers={customers}
           onSubmit={addTransaction}
           onClose={() => setShowTransactionForm(false)}
+        />
+      )}
+
+      {showSupplierForm && (
+        <SupplierForm
+          onSubmit={addSupplier}
+          onClose={() => setShowSupplierForm(false)}
+        />
+      )}
+
+      {showInventoryForm && (
+        <InventoryForm
+          suppliers={suppliers}
+          onSubmit={addInventoryItem}
+          onClose={() => setShowInventoryForm(false)}
         />
       )}
     </div>
