@@ -11,6 +11,7 @@ import DashboardStats from '@/components/DashboardStats';
 import TransactionChart from '@/components/TransactionChart';
 import SupplierForm from '@/components/SupplierForm';
 import InventoryForm from '@/components/InventoryForm';
+import CustomerTransactionHistory from '@/components/CustomerTransactionHistory';
 
 interface Customer {
   id: string;
@@ -146,7 +147,8 @@ const Index = () => {
   const [showTransactionForm, setShowTransactionForm] = useState(false);
   const [showSupplierForm, setShowSupplierForm] = useState(false);
   const [showInventoryForm, setShowInventoryForm] = useState(false);
-  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
+  const [showCustomerHistory, setShowCustomerHistory] = useState(false);
+  const [selectedCustomerForHistory, setSelectedCustomerForHistory] = useState<Customer | null>(null);
   const [activeTab, setActiveTab] = useState('dashboard');
 
   const filteredCustomers = customers.filter(customer =>
@@ -230,6 +232,11 @@ const Index = () => {
 
     setInventory([...inventory, newItem]);
     setShowInventoryForm(false);
+  };
+
+  const handleCustomerClick = (customer: Customer) => {
+    setSelectedCustomerForHistory(customer);
+    setShowCustomerHistory(true);
   };
 
   return (
@@ -339,18 +346,34 @@ const Index = () => {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredCustomers.map((customer) => (
-                    <Card key={customer.id} className="hover:shadow-md transition-shadow">
+                    <Card 
+                      key={customer.id} 
+                      className="hover:shadow-md transition-shadow cursor-pointer"
+                      onClick={() => handleCustomerClick(customer)}
+                    >
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between mb-3">
                           <h3 className="font-semibold text-lg">{customer.name}</h3>
                           <div className="flex space-x-1">
-                            <Button variant="ghost" size="sm">
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleCustomerClick(customer);
+                              }}
+                            >
                               <Eye className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="sm">
+                            <Button variant="ghost" size="sm" onClick={(e) => e.stopPropagation()}>
                               <Edit className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700">
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              className="text-red-500 hover:text-red-700"
+                              onClick={(e) => e.stopPropagation()}
+                            >
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
@@ -372,6 +395,9 @@ const Index = () => {
                         </div>
                         <p className="text-xs text-gray-400 mt-2">
                           Last transaction: {customer.lastTransaction}
+                        </p>
+                        <p className="text-xs text-blue-600 mt-2 font-medium">
+                          Click to view transaction history
                         </p>
                       </CardContent>
                     </Card>
@@ -641,6 +667,17 @@ const Index = () => {
           suppliers={suppliers}
           onSubmit={addInventoryItem}
           onClose={() => setShowInventoryForm(false)}
+        />
+      )}
+
+      {showCustomerHistory && selectedCustomerForHistory && (
+        <CustomerTransactionHistory
+          customer={selectedCustomerForHistory}
+          transactions={transactions}
+          onClose={() => {
+            setShowCustomerHistory(false);
+            setSelectedCustomerForHistory(null);
+          }}
         />
       )}
     </div>
