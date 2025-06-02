@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Search, Users, TrendingUp, TrendingDown, IndianRupee, Eye, Edit, Trash2, Truck, Package, AlertTriangle } from 'lucide-react';
+import { Plus, Search, Users, TrendingUp, TrendingDown, IndianRupee, Eye, Edit, Trash2, Truck, Package, AlertTriangle, Download, FileText } from 'lucide-react';
 import CustomerForm from '@/components/CustomerForm';
 import TransactionForm from '@/components/TransactionForm';
 import DashboardStats from '@/components/DashboardStats';
@@ -12,6 +12,7 @@ import TransactionChart from '@/components/TransactionChart';
 import SupplierForm from '@/components/SupplierForm';
 import InventoryForm from '@/components/InventoryForm';
 import CustomerTransactionHistory from '@/components/CustomerTransactionHistory';
+import jsPDF from 'jspdf';
 
 interface Customer {
   id: string;
@@ -237,6 +238,109 @@ const Index = () => {
   const handleCustomerClick = (customer: Customer) => {
     setSelectedCustomerForHistory(customer);
     setShowCustomerHistory(true);
+  };
+
+  const generatePDFReport = (reportType: 'weekly' | 'monthly' | 'annual') => {
+    const doc = new jsPDF();
+    const currentDate = new Date();
+    
+    // Header
+    doc.setFontSize(20);
+    doc.text('BNP Fencing Works', 20, 20);
+    doc.setFontSize(16);
+    doc.text(`${reportType.charAt(0).toUpperCase() + reportType.slice(1)} Report`, 20, 35);
+    doc.setFontSize(12);
+    doc.text(`Generated on: ${currentDate.toLocaleDateString()}`, 20, 45);
+    
+    let yPosition = 60;
+    
+    // Financial Summary
+    doc.setFontSize(14);
+    doc.text('Financial Summary', 20, yPosition);
+    yPosition += 15;
+    
+    doc.setFontSize(10);
+    doc.text(`Total Credit (To Give): ₹${totalCredit.toLocaleString()}`, 20, yPosition);
+    yPosition += 10;
+    doc.text(`Total Debit (To Get): ₹${totalDebit.toLocaleString()}`, 20, yPosition);
+    yPosition += 10;
+    doc.text(`Net Balance: ₹${Math.abs(netBalance).toLocaleString()} ${netBalance >= 0 ? '(In your favor)' : '(Outstanding)'}`, 20, yPosition);
+    yPosition += 10;
+    doc.text(`Total Inventory Value: ₹${totalInventoryValue.toLocaleString()}`, 20, yPosition);
+    yPosition += 20;
+    
+    // Customer Summary
+    doc.setFontSize(14);
+    doc.text('Customer Summary', 20, yPosition);
+    yPosition += 15;
+    
+    doc.setFontSize(10);
+    doc.text(`Total Customers: ${customers.length}`, 20, yPosition);
+    yPosition += 15;
+    
+    // Top customers by balance
+    const topCustomers = customers
+      .sort((a, b) => Math.abs(b.balance) - Math.abs(a.balance))
+      .slice(0, 5);
+    
+    doc.text('Top 5 Customers by Balance:', 20, yPosition);
+    yPosition += 10;
+    
+    topCustomers.forEach((customer, index) => {
+      doc.text(`${index + 1}. ${customer.name}: ₹${Math.abs(customer.balance).toLocaleString()} ${customer.balance >= 0 ? '(To Give)' : '(To Get)'}`, 25, yPosition);
+      yPosition += 8;
+    });
+    
+    yPosition += 10;
+    
+    // Recent Transactions
+    doc.setFontSize(14);
+    doc.text('Recent Transactions', 20, yPosition);
+    yPosition += 15;
+    
+    const recentTransactions = transactions
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 10);
+    
+    doc.setFontSize(10);
+    recentTransactions.forEach((transaction) => {
+      if (yPosition > 250) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      doc.text(`${transaction.date} - ${transaction.customerName}: ${transaction.type === 'credit' ? '+' : '-'}₹${transaction.amount.toLocaleString()} (${transaction.description})`, 20, yPosition);
+      yPosition += 8;
+    });
+    
+    // Inventory Summary (if there's space or on new page)
+    if (yPosition > 200) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    yPosition += 10;
+    doc.setFontSize(14);
+    doc.text('Inventory Summary', 20, yPosition);
+    yPosition += 15;
+    
+    doc.setFontSize(10);
+    doc.text(`Total Items: ${inventory.length}`, 20, yPosition);
+    yPosition += 10;
+    doc.text(`Low Stock Items: ${lowStockItems.length}`, 20, yPosition);
+    yPosition += 15;
+    
+    if (lowStockItems.length > 0) {
+      doc.text('Low Stock Items:', 20, yPosition);
+      yPosition += 10;
+      lowStockItems.forEach((item) => {
+        doc.text(`• ${item.name}: ${item.quantity} ${item.unit} (Min: ${item.minStockLevel})`, 25, yPosition);
+        yPosition += 8;
+      });
+    }
+    
+    // Save the PDF
+    const fileName = `BNP_Fencing_${reportType}_report_${currentDate.toISOString().split('T')[0]}.pdf`;
+    doc.save(fileName);
   };
 
   return (
@@ -582,6 +686,33 @@ const Index = () => {
 
           {/* Reports Tab */}
           <TabsContent value="reports" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold">Reports & Analytics</h2>
+              <div className="flex space-x-3">
+                <Button
+                  onClick={() => generatePDFReport('weekly')}
+                  className="bg-blue-600 hover:bg-blue-700"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Weekly PDF
+                </Button>
+                <Button
+                  onClick={() => generatePDFReport('monthly')}
+                  className="bg-green-600 hover:bg-green-700"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Monthly PDF
+                </Button>
+                <Button
+                  onClick={() => generatePDFReport('annual')}
+                  className="bg-purple-600 hover:bg-purple-700"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Annual PDF
+                </Button>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
