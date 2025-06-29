@@ -345,13 +345,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Header - Mobile Optimized */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-white/80 backdrop-blur-sm shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16">
             <div className="flex items-center space-x-2 sm:space-x-3">
-              <div className="bg-green-600 p-1.5 sm:p-2 rounded-lg">
+              <div className="bg-gradient-to-r from-green-600 to-green-700 p-1.5 sm:p-2 rounded-xl shadow-lg">
                 <IndianRupee className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
               </div>
               <div>
@@ -362,7 +362,7 @@ const Index = () => {
             <div className="flex items-center space-x-1 sm:space-x-3">
               <Button
                 onClick={() => setShowCustomerForm(true)}
-                className="bg-green-600 hover:bg-green-700 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
+                className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2 shadow-lg hover:shadow-xl transition-all duration-200"
                 size="sm"
               >
                 <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
@@ -372,7 +372,7 @@ const Index = () => {
               <Button
                 onClick={() => setShowTransactionForm(true)}
                 variant="outline"
-                className="text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
+                className="text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2 border-green-200 hover:bg-green-50 hover:border-green-300 transition-all duration-200"
                 size="sm"
               >
                 <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
@@ -384,18 +384,18 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-8">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 sm:space-y-6">
-          <TabsList className="grid w-full grid-cols-5 h-8 sm:h-10 text-xs sm:text-sm lg:w-[500px]">
-            <TabsTrigger value="dashboard" className="px-1 sm:px-3">Dashboard</TabsTrigger>
-            <TabsTrigger value="customers" className="px-1 sm:px-3">Customers</TabsTrigger>
-            <TabsTrigger value="transactions" className="px-1 sm:px-3">Trans</TabsTrigger>
-            <TabsTrigger value="suppliers" className="px-1 sm:px-3">Suppliers</TabsTrigger>
-            <TabsTrigger value="reports" className="px-1 sm:px-3">Reports</TabsTrigger>
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6 sm:space-y-8">
+          <TabsList className="grid w-full grid-cols-5 h-10 sm:h-12 text-xs sm:text-sm lg:w-[500px] bg-white/70 backdrop-blur-sm shadow-lg rounded-xl">
+            <TabsTrigger value="dashboard" className="px-1 sm:px-3 rounded-lg">Dashboard</TabsTrigger>
+            <TabsTrigger value="customers" className="px-1 sm:px-3 rounded-lg">Customers</TabsTrigger>
+            <TabsTrigger value="transactions" className="px-1 sm:px-3 rounded-lg">Trans</TabsTrigger>
+            <TabsTrigger value="suppliers" className="px-1 sm:px-3 rounded-lg">Suppliers</TabsTrigger>
+            <TabsTrigger value="reports" className="px-1 sm:px-3 rounded-lg">Reports</TabsTrigger>
           </TabsList>
 
           {/* Dashboard Tab */}
-          <TabsContent value="dashboard" className="space-y-4 sm:space-y-6">
+          <TabsContent value="dashboard" className="space-y-6 sm:space-y-8">
             <DashboardStats 
               totalCredit={totalCredit}
               totalDebit={totalDebit}
@@ -403,31 +403,33 @@ const Index = () => {
               totalCustomers={customers.length}
             />
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               <TransactionChart transactions={transactions} />
               
-              <Card>
-                <CardHeader className="pb-3 sm:pb-6">
-                  <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl">
-                    <Users className="h-4 w-4 sm:h-5 sm:w-5" />
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 hover:shadow-2xl transition-all duration-300">
+                <CardHeader className="pb-4 sm:pb-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">
+                  <CardTitle className="flex items-center space-x-3 text-lg sm:text-xl text-gray-800">
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <Users className="h-5 w-5 text-blue-600" />
+                    </div>
                     <span>Recent Customers</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3 sm:space-y-4">
+                <CardContent className="p-6">
+                  <div className="space-y-4 sm:space-y-5">
                     {customers.slice(0, 5).map((customer) => (
-                      <div key={customer.id} className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                      <div key={customer.id} className="flex items-center justify-between p-4 sm:p-5 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl hover:from-blue-50 hover:to-indigo-50 transition-all duration-200 border border-gray-100 hover:border-blue-200 hover:shadow-md">
                         <div className="min-w-0 flex-1">
-                          <p className="font-medium text-sm sm:text-base truncate">{customer.name}</p>
-                          <p className="text-xs sm:text-sm text-gray-500 truncate">{customer.phone}</p>
+                          <p className="font-semibold text-sm sm:text-base truncate text-gray-800">{customer.name}</p>
+                          <p className="text-xs sm:text-sm text-gray-500 truncate mt-1">{customer.phone}</p>
                         </div>
                         <Badge 
                           variant={customer.balance >= 0 ? "default" : "destructive"}
-                          className="font-semibold text-xs sm:text-sm ml-2 flex-shrink-0"
+                          className="font-semibold text-xs sm:text-sm ml-3 flex-shrink-0 px-3 py-1.5 rounded-full shadow-sm"
                         >
                           ₹{Math.abs(customer.balance).toLocaleString()}
-                          <span className="hidden sm:inline">
-                            {customer.balance >= 0 ? ' To Give' : ' To Get'}
+                          <span className="hidden sm:inline ml-1">
+                            {customer.balance >= 0 ? 'To Give' : 'To Get'}
                           </span>
                         </Badge>
                       </div>
@@ -439,69 +441,74 @@ const Index = () => {
           </TabsContent>
 
           {/* Customers Tab */}
-          <TabsContent value="customers" className="space-y-4 sm:space-y-6">
-            <Card>
-              <CardHeader className="pb-3 sm:pb-6">
-                <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-                  <CardTitle className="text-lg sm:text-xl">Customer Management</CardTitle>
-                  <div className="relative w-full sm:w-64">
+          <TabsContent value="customers" className="space-y-6 sm:space-y-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
+              <CardHeader className="pb-4 sm:pb-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-t-lg">
+                <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                  <CardTitle className="text-lg sm:text-xl flex items-center space-x-3 text-gray-800">
+                    <div className="p-2 bg-green-100 rounded-lg">
+                      <Users className="h-5 w-5 text-green-600" />
+                    </div>
+                    <span>Customer Management</span>
+                  </CardTitle>
+                  <div className="relative w-full sm:w-72">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                     <Input
                       placeholder="Search customers..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 text-sm"
+                      className="pl-10 text-sm bg-white/80 border-gray-200 focus:border-green-300 focus:ring-green-200 rounded-lg"
                     />
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              <CardContent className="p-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   {filteredCustomers.map((customer) => (
                     <Card 
                       key={customer.id} 
-                      className="hover:shadow-md transition-shadow cursor-pointer"
+                      className="hover:shadow-xl transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:scale-105"
                       onClick={() => handleCustomerClick(customer)}
                     >
-                      <CardContent className="p-3 sm:p-4">
-                        <div className="flex items-start justify-between mb-2 sm:mb-3">
-                          <h3 className="font-semibold text-sm sm:text-lg pr-2 truncate flex-1">{customer.name}</h3>
+                      <CardContent className="p-5 sm:p-6">
+                        <div className="flex items-start justify-between mb-3 sm:mb-4">
+                          <h3 className="font-semibold text-sm sm:text-lg pr-2 truncate flex-1 text-gray-800">{customer.name}</h3>
                           <div className="flex space-x-1 flex-shrink-0">
                             <Button 
                               variant="ghost" 
                               size="sm"
-                              className="h-6 w-6 sm:h-8 sm:w-8 p-0"
+                              className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-blue-100 rounded-full"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleCustomerClick(customer);
                               }}
                             >
-                              <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
+                              <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
                             </Button>
                             <Button 
                               variant="ghost" 
                               size="sm" 
-                              className="h-6 w-6 sm:h-8 sm:w-8 p-0"
+                              className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-green-100 rounded-full"
                               onClick={(e) => e.stopPropagation()}
                             >
-                              <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
+                              <Edit className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
                             </Button>
                             <Button 
                               variant="ghost" 
                               size="sm" 
-                              className="text-red-500 hover:text-red-700 h-6 w-6 sm:h-8 sm:w-8 p-0"
+                              className="text-red-500 hover:text-red-700 hover:bg-red-100 h-7 w-7 sm:h-8 sm:w-8 p-0 rounded-full"
                               onClick={(e) => e.stopPropagation()}
                             >
                               <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
                           </div>
                         </div>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 truncate">{customer.phone}</p>
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs sm:text-sm text-gray-500">Balance:</span>
+                        <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 truncate">{customer.phone}</p>
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-xs sm:text-sm text-gray-500 font-medium">Balance:</span>
                           <Badge 
                             variant={customer.balance >= 0 ? "default" : "destructive"}
-                            className="font-semibold text-xs"
+                            className="font-semibold text-xs px-3 py-1.5 rounded-full shadow-sm"
                           >
                             {customer.balance >= 0 ? (
                               <TrendingUp className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
@@ -511,12 +518,14 @@ const Index = () => {
                             ₹{Math.abs(customer.balance).toLocaleString()}
                           </Badge>
                         </div>
-                        <p className="text-xs text-gray-400 mb-1 sm:mb-2">
-                          Last: {customer.lastTransaction}
-                        </p>
-                        <p className="text-xs text-blue-600 font-medium">
-                          Tap to view history
-                        </p>
+                        <div className="space-y-2">
+                          <p className="text-xs text-gray-400">
+                            Last transaction: {customer.lastTransaction}
+                          </p>
+                          <p className="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded-full text-center">
+                            Tap to view history
+                          </p>
+                        </div>
                       </CardContent>
                     </Card>
                   ))}
@@ -526,33 +535,38 @@ const Index = () => {
           </TabsContent>
 
           {/* Transactions Tab */}
-          <TabsContent value="transactions" className="space-y-4 sm:space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg sm:text-xl">Transaction History</CardTitle>
+          <TabsContent value="transactions" className="space-y-6 sm:space-y-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
+              <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-t-lg">
+                <CardTitle className="text-lg sm:text-xl flex items-center space-x-3 text-gray-800">
+                  <div className="p-2 bg-purple-100 rounded-lg">
+                    <TrendingUp className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <span>Transaction History</span>
+                </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-3 sm:space-y-4">
+              <CardContent className="p-6">
+                <div className="space-y-4 sm:space-y-5">
                   {transactions.map((transaction) => (
-                    <div key={transaction.id} className="flex items-center justify-between p-3 sm:p-4 border rounded-lg hover:bg-gray-50">
-                      <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-1">
-                        <div className={`p-1.5 sm:p-2 rounded-full flex-shrink-0 ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
+                    <div key={transaction.id} className="flex items-center justify-between p-4 sm:p-5 border-0 rounded-xl hover:shadow-md transition-all duration-200 bg-gradient-to-r from-gray-50 to-purple-50/30 hover:from-purple-50 hover:to-pink-50 border border-gray-100 hover:border-purple-200">
+                      <div className="flex items-center space-x-4 sm:space-x-5 min-w-0 flex-1">
+                        <div className={`p-2.5 sm:p-3 rounded-full flex-shrink-0 shadow-sm ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
                           {transaction.type === 'credit' ? (
-                            <TrendingUp className={`h-3 w-3 sm:h-4 sm:w-4 text-green-600`} />
+                            <TrendingUp className={`h-4 w-4 sm:h-5 sm:w-5 text-green-600`} />
                           ) : (
-                            <TrendingDown className={`h-3 w-3 sm:h-4 sm:w-4 text-red-600`} />
+                            <TrendingDown className={`h-4 w-4 sm:h-5 sm:w-5 text-red-600`} />
                           )}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="font-medium text-sm sm:text-base truncate">{transaction.customerName}</p>
-                          <p className="text-xs sm:text-sm text-gray-500 truncate">{transaction.description}</p>
+                          <p className="font-semibold text-sm sm:text-base truncate text-gray-800">{transaction.customerName}</p>
+                          <p className="text-xs sm:text-sm text-gray-600 truncate mt-1">{transaction.description}</p>
                         </div>
                       </div>
-                      <div className="text-right flex-shrink-0 ml-2">
-                        <p className={`font-semibold text-sm sm:text-base ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}`}>
+                      <div className="text-right flex-shrink-0 ml-3">
+                        <p className={`font-bold text-sm sm:text-base ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}`}>
                           {transaction.type === 'credit' ? '+' : '-'}₹{transaction.amount.toLocaleString()}
                         </p>
-                        <p className="text-xs sm:text-sm text-gray-500">{transaction.date}</p>
+                        <p className="text-xs sm:text-sm text-gray-500 mt-1">{transaction.date}</p>
                       </div>
                     </div>
                   ))}
