@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Search, Users, TrendingUp, TrendingDown, IndianRupee, Eye, Edit, Trash2, Truck, Package, AlertTriangle, Download, FileText } from 'lucide-react';
+import { Plus, Search, Users, TrendingUp, TrendingDown, IndianRupee, Eye, Edit, Trash2, Truck, Package, AlertTriangle, Download, FileText, BarChart3, Receipt } from 'lucide-react';
 import CustomerForm from '@/components/CustomerForm';
 import TransactionForm from '@/components/TransactionForm';
 import DashboardStats from '@/components/DashboardStats';
@@ -386,39 +385,48 @@ const Index = () => {
 
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8 sm:space-y-10">
-          {/* Enhanced Navigation Tabs */}
+          {/* Enhanced Navigation Tabs with Icons */}
           <div className="flex justify-center">
-            <TabsList className="grid grid-cols-5 w-full max-w-2xl h-14 sm:h-16 p-2 bg-white/90 backdrop-blur-sm shadow-xl border border-gray-200/50 rounded-2xl">
+            <TabsList className="grid grid-cols-5 w-full max-w-3xl h-16 sm:h-18 p-2 bg-white/95 backdrop-blur-sm shadow-xl border border-gray-200/50 rounded-3xl">
               <TabsTrigger 
                 value="dashboard" 
-                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-blue-50 hover:text-blue-700"
+                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-blue-50 hover:text-blue-700 space-y-1"
               >
-                Dashboard
+                <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden sm:inline">Dashboard</span>
+                <span className="sm:hidden text-xs">Dash</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="customers" 
-                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-green-50 hover:text-green-700"
+                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-green-50 hover:text-green-700 space-y-1"
               >
-                Customers
+                <Users className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden sm:inline">Customers</span>
+                <span className="sm:hidden text-xs">Cust</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="transactions" 
-                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-purple-50 hover:text-purple-700"
+                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-purple-50 hover:text-purple-700 space-y-1"
               >
+                <Receipt className="h-4 w-4 sm:h-5 sm:w-5" />
                 <span className="hidden sm:inline">Transactions</span>
-                <span className="sm:hidden">Trans</span>
+                <span className="sm:hidden text-xs">Trans</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="suppliers" 
-                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-orange-50 hover:text-orange-700"
+                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-orange-50 hover:text-orange-700 space-y-1"
               >
-                Suppliers
+                <Truck className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden sm:inline">Suppliers</span>
+                <span className="sm:hidden text-xs">Supp</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="reports" 
-                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-indigo-50 hover:text-indigo-700"
+                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-indigo-50 hover:text-indigo-700 space-y-1"
               >
-                Reports
+                <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden sm:inline">Reports</span>
+                <span className="sm:hidden text-xs">Rpts</span>
               </TabsTrigger>
             </TabsList>
           </div>
