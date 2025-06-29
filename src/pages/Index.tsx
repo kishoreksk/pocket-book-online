@@ -385,43 +385,38 @@ const Index = () => {
 
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8 sm:space-y-10">
-          {/* Floating Navigation Tabs */}
+          {/* Floating Navigation Tabs - Icons Only */}
           <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 sm:relative sm:bottom-auto sm:left-auto sm:transform-none sm:flex sm:justify-center">
-            <TabsList className="grid grid-cols-5 w-80 sm:w-full sm:max-w-4xl h-16 sm:h-20 p-2 bg-white/95 backdrop-blur-lg shadow-2xl border border-white/20 rounded-3xl sm:rounded-3xl floating-nav">
+            <TabsList className="grid grid-cols-5 w-80 sm:w-96 h-16 sm:h-20 p-2 bg-white/95 backdrop-blur-lg shadow-2xl border border-white/20 rounded-3xl sm:rounded-3xl floating-nav">
               <TabsTrigger 
                 value="dashboard" 
-                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-blue-500/25 hover:bg-blue-50 hover:text-blue-700 space-y-0.5 sm:space-y-1"
+                className="flex items-center justify-center px-3 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-blue-500/25 hover:bg-blue-50 hover:text-blue-700"
               >
-                <BarChart3 className="h-4 w-4 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm">Dashboard</span>
+                <BarChart3 className="h-5 w-5 sm:h-7 sm:w-7" />
               </TabsTrigger>
               <TabsTrigger 
                 value="customers" 
-                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-green-500/25 hover:bg-green-50 hover:text-green-700 space-y-0.5 sm:space-y-1"
+                className="flex items-center justify-center px-3 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-green-500/25 hover:bg-green-50 hover:text-green-700"
               >
-                <Users className="h-4 w-4 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm">Customers</span>
+                <Users className="h-5 w-5 sm:h-7 sm:w-7" />
               </TabsTrigger>
               <TabsTrigger 
                 value="transactions" 
-                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-purple-500/25 hover:bg-purple-50 hover:text-purple-700 space-y-0.5 sm:space-y-1"
+                className="flex items-center justify-center px-3 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-purple-500/25 hover:bg-purple-50 hover:text-purple-700"
               >
-                <Receipt className="h-4 w-4 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm">Transactions</span>
+                <Receipt className="h-5 w-5 sm:h-7 sm:w-7" />
               </TabsTrigger>
               <TabsTrigger 
                 value="suppliers" 
-                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-orange-500/25 hover:bg-orange-50 hover:text-orange-700 space-y-0.5 sm:space-y-1"
+                className="flex items-center justify-center px-3 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-orange-500/25 hover:bg-orange-50 hover:text-orange-700"
               >
-                <Truck className="h-4 w-4 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm">Suppliers</span>
+                <Truck className="h-5 w-5 sm:h-7 sm:w-7" />
               </TabsTrigger>
               <TabsTrigger 
                 value="reports" 
-                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-indigo-500/25 hover:bg-indigo-50 hover:text-indigo-700 space-y-0.5 sm:space-y-1"
+                className="flex items-center justify-center px-3 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-indigo-500/25 hover:bg-indigo-50 hover:text-indigo-700"
               >
-                <FileText className="h-4 w-4 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm">Reports</span>
+                <FileText className="h-5 w-5 sm:h-7 sm:w-7" />
               </TabsTrigger>
             </TabsList>
           </div>
