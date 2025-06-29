@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -346,36 +345,38 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Header - Mobile Optimized */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
-          <div className="flex items-center justify-between h-14 sm:h-16">
-            <div className="flex items-center space-x-2 sm:space-x-3">
-              <div className="bg-green-600 p-1.5 sm:p-2 rounded-lg">
-                <IndianRupee className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+      {/* Header - More Beautiful and Spacious */}
+      <div className="bg-white shadow-lg border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-6 sm:py-8">
+            <div className="flex items-center space-x-4 sm:space-x-6">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 sm:p-4 rounded-xl shadow-md">
+                <IndianRupee className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
               </div>
-              <div>
-                <h1 className="text-lg sm:text-xl font-bold text-gray-900">BNP Fencing Works</h1>
-                <p className="text-xs sm:text-sm text-gray-500 hidden sm:block">Digital Ledger & Inventory</p>
+              <div className="space-y-1">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">
+                  BNP Fencing Works
+                </h1>
+                <p className="text-sm sm:text-base text-gray-600 font-medium">
+                  Digital Ledger & Inventory Management
+                </p>
               </div>
             </div>
-            <div className="flex items-center space-x-1 sm:space-x-3">
+            <div className="flex items-center space-x-3 sm:space-x-4">
               <Button
                 onClick={() => setShowCustomerForm(true)}
-                className="bg-green-600 hover:bg-green-700 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
-                size="sm"
+                className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3 shadow-md hover:shadow-lg transition-all duration-200"
               >
-                <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <Plus className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 <span className="hidden sm:inline">Add Customer</span>
                 <span className="sm:hidden">Add</span>
               </Button>
               <Button
                 onClick={() => setShowTransactionForm(true)}
                 variant="outline"
-                className="text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
-                size="sm"
+                className="text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3 border-2 hover:bg-gray-50 shadow-sm hover:shadow-md transition-all duration-200"
               >
-                <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <Plus className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 <span className="hidden sm:inline">Add Transaction</span>
                 <span className="sm:hidden">Trans</span>
               </Button>
