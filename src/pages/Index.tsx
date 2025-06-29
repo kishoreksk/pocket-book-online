@@ -364,7 +364,7 @@ const Index = () => {
                 className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2 shadow-lg hover:shadow-xl transition-all duration-200"
                 size="sm"
               >
-                <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                 <span className="hidden sm:inline">Add Customer</span>
                 <span className="sm:hidden">Add</span>
               </Button>
@@ -374,7 +374,7 @@ const Index = () => {
                 className="text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2 border-green-200 hover:bg-green-50 hover:border-green-300 transition-all duration-200"
                 size="sm"
               >
-                <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <Receipt className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                 <span className="hidden sm:inline">Add Transaction</span>
                 <span className="sm:hidden">Trans</span>
               </Button>
