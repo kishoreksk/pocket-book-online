@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -351,8 +350,23 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16">
             <div className="flex items-center space-x-2 sm:space-x-3">
-              <div className="bg-gradient-to-r from-green-600 to-green-700 p-1.5 sm:p-2 rounded-xl shadow-lg">
-                <IndianRupee className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+              <div className="bg-gradient-to-r from-green-600 to-green-700 p-1.5 sm:p-2 rounded-xl shadow-lg flex items-center justify-center">
+                <svg 
+                  className="h-4 w-4 sm:h-6 sm:w-6 text-white" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2"
+                >
+                  <path d="M4 3h16v2H4z"/>
+                  <path d="M6 5v14"/>
+                  <path d="M10 5v14"/>
+                  <path d="M14 5v14"/>
+                  <path d="M18 5v14"/>
+                  <path d="M4 19h16v2H4z"/>
+                  <circle cx="8" cy="12" r="1"/>
+                  <circle cx="16" cy="12" r="1"/>
+                </svg>
               </div>
               <div>
                 <h1 className="text-lg sm:text-xl font-bold text-gray-900">BIP Fencing Works</h1>
