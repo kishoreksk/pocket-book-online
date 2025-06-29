@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -345,51 +346,56 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Header */}
+      {/* Header - Mobile Optimized */}
       <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-3">
-              <div className="bg-green-600 p-2 rounded-lg">
-                <IndianRupee className="h-6 w-6 text-white" />
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+          <div className="flex items-center justify-between h-14 sm:h-16">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <div className="bg-green-600 p-1.5 sm:p-2 rounded-lg">
+                <IndianRupee className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">BNP Fencing Works</h1>
-                <p className="text-sm text-gray-500">Digital Ledger & Inventory</p>
+                <h1 className="text-lg sm:text-xl font-bold text-gray-900">BNP Fencing Works</h1>
+                <p className="text-xs sm:text-sm text-gray-500 hidden sm:block">Digital Ledger & Inventory</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-1 sm:space-x-3">
               <Button
                 onClick={() => setShowCustomerForm(true)}
-                className="bg-green-600 hover:bg-green-700"
+                className="bg-green-600 hover:bg-green-700 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
+                size="sm"
               >
-                <Plus className="h-4 w-4 mr-2" />
-                Add Customer
+                <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Add Customer</span>
+                <span className="sm:hidden">Add</span>
               </Button>
               <Button
                 onClick={() => setShowTransactionForm(true)}
                 variant="outline"
+                className="text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
+                size="sm"
               >
-                <Plus className="h-4 w-4 mr-2" />
-                Add Transaction
+                <Plus className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Add Transaction</span>
+                <span className="sm:hidden">Trans</span>
               </Button>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5 lg:w-[500px]">
-            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-            <TabsTrigger value="customers">Customers</TabsTrigger>
-            <TabsTrigger value="transactions">Transactions</TabsTrigger>
-            <TabsTrigger value="suppliers">Suppliers</TabsTrigger>
-            <TabsTrigger value="reports">Reports</TabsTrigger>
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-8">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 sm:space-y-6">
+          <TabsList className="grid w-full grid-cols-5 h-8 sm:h-10 text-xs sm:text-sm lg:w-[500px]">
+            <TabsTrigger value="dashboard" className="px-1 sm:px-3">Dashboard</TabsTrigger>
+            <TabsTrigger value="customers" className="px-1 sm:px-3">Customers</TabsTrigger>
+            <TabsTrigger value="transactions" className="px-1 sm:px-3">Trans</TabsTrigger>
+            <TabsTrigger value="suppliers" className="px-1 sm:px-3">Suppliers</TabsTrigger>
+            <TabsTrigger value="reports" className="px-1 sm:px-3">Reports</TabsTrigger>
           </TabsList>
 
           {/* Dashboard Tab */}
-          <TabsContent value="dashboard" className="space-y-6">
+          <TabsContent value="dashboard" className="space-y-4 sm:space-y-6">
             <DashboardStats 
               totalCredit={totalCredit}
               totalDebit={totalDebit}
@@ -397,30 +403,32 @@ const Index = () => {
               totalCustomers={customers.length}
             />
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               <TransactionChart transactions={transactions} />
               
               <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Users className="h-5 w-5" />
+                <CardHeader className="pb-3 sm:pb-6">
+                  <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl">
+                    <Users className="h-4 w-4 sm:h-5 sm:w-5" />
                     <span>Recent Customers</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {customers.slice(0, 5).map((customer) => (
-                      <div key={customer.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                        <div>
-                          <p className="font-medium">{customer.name}</p>
-                          <p className="text-sm text-gray-500">{customer.phone}</p>
+                      <div key={customer.id} className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-sm sm:text-base truncate">{customer.name}</p>
+                          <p className="text-xs sm:text-sm text-gray-500 truncate">{customer.phone}</p>
                         </div>
                         <Badge 
                           variant={customer.balance >= 0 ? "default" : "destructive"}
-                          className="font-semibold"
+                          className="font-semibold text-xs sm:text-sm ml-2 flex-shrink-0"
                         >
                           ₹{Math.abs(customer.balance).toLocaleString()}
-                          {customer.balance >= 0 ? ' To Give' : ' To Get'}
+                          <span className="hidden sm:inline">
+                            {customer.balance >= 0 ? ' To Give' : ' To Get'}
+                          </span>
                         </Badge>
                       </div>
                     ))}
@@ -431,77 +439,83 @@ const Index = () => {
           </TabsContent>
 
           {/* Customers Tab */}
-          <TabsContent value="customers" className="space-y-6">
+          <TabsContent value="customers" className="space-y-4 sm:space-y-6">
             <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle>Customer Management</CardTitle>
-                  <div className="relative w-64">
+              <CardHeader className="pb-3 sm:pb-6">
+                <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                  <CardTitle className="text-lg sm:text-xl">Customer Management</CardTitle>
+                  <div className="relative w-full sm:w-64">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                     <Input
                       placeholder="Search customers..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
+                      className="pl-10 text-sm"
                     />
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {filteredCustomers.map((customer) => (
                     <Card 
                       key={customer.id} 
                       className="hover:shadow-md transition-shadow cursor-pointer"
                       onClick={() => handleCustomerClick(customer)}
                     >
-                      <CardContent className="p-4">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="font-semibold text-lg">{customer.name}</h3>
-                          <div className="flex space-x-1">
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="flex items-start justify-between mb-2 sm:mb-3">
+                          <h3 className="font-semibold text-sm sm:text-lg pr-2 truncate flex-1">{customer.name}</h3>
+                          <div className="flex space-x-1 flex-shrink-0">
                             <Button 
                               variant="ghost" 
                               size="sm"
+                              className="h-6 w-6 sm:h-8 sm:w-8 p-0"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleCustomerClick(customer);
                               }}
                             >
-                              <Eye className="h-4 w-4" />
-                            </Button>
-                            <Button variant="ghost" size="sm" onClick={(e) => e.stopPropagation()}>
-                              <Edit className="h-4 w-4" />
+                              <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
                             <Button 
                               variant="ghost" 
                               size="sm" 
-                              className="text-red-500 hover:text-red-700"
+                              className="h-6 w-6 sm:h-8 sm:w-8 p-0"
                               onClick={(e) => e.stopPropagation()}
                             >
-                              <Trash2 className="h-4 w-4" />
+                              <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
+                            </Button>
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              className="text-red-500 hover:text-red-700 h-6 w-6 sm:h-8 sm:w-8 p-0"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600 mb-3">{customer.phone}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500">Balance:</span>
+                        <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 truncate">{customer.phone}</p>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs sm:text-sm text-gray-500">Balance:</span>
                           <Badge 
                             variant={customer.balance >= 0 ? "default" : "destructive"}
-                            className="font-semibold"
+                            className="font-semibold text-xs"
                           >
                             {customer.balance >= 0 ? (
-                              <TrendingUp className="h-3 w-3 mr-1" />
+                              <TrendingUp className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
                             ) : (
-                              <TrendingDown className="h-3 w-3 mr-1" />
+                              <TrendingDown className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
                             )}
                             ₹{Math.abs(customer.balance).toLocaleString()}
                           </Badge>
                         </div>
-                        <p className="text-xs text-gray-400 mt-2">
-                          Last transaction: {customer.lastTransaction}
+                        <p className="text-xs text-gray-400 mb-1 sm:mb-2">
+                          Last: {customer.lastTransaction}
                         </p>
-                        <p className="text-xs text-blue-600 mt-2 font-medium">
-                          Click to view transaction history
+                        <p className="text-xs text-blue-600 font-medium">
+                          Tap to view history
                         </p>
                       </CardContent>
                     </Card>
@@ -512,33 +526,33 @@ const Index = () => {
           </TabsContent>
 
           {/* Transactions Tab */}
-          <TabsContent value="transactions" className="space-y-6">
+          <TabsContent value="transactions" className="space-y-4 sm:space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Transaction History</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">Transaction History</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {transactions.map((transaction) => (
-                    <div key={transaction.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
-                      <div className="flex items-center space-x-4">
-                        <div className={`p-2 rounded-full ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
+                    <div key={transaction.id} className="flex items-center justify-between p-3 sm:p-4 border rounded-lg hover:bg-gray-50">
+                      <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-1">
+                        <div className={`p-1.5 sm:p-2 rounded-full flex-shrink-0 ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
                           {transaction.type === 'credit' ? (
-                            <TrendingUp className={`h-4 w-4 text-green-600`} />
+                            <TrendingUp className={`h-3 w-3 sm:h-4 sm:w-4 text-green-600`} />
                           ) : (
-                            <TrendingDown className={`h-4 w-4 text-red-600`} />
+                            <TrendingDown className={`h-3 w-3 sm:h-4 sm:w-4 text-red-600`} />
                           )}
                         </div>
-                        <div>
-                          <p className="font-medium">{transaction.customerName}</p>
-                          <p className="text-sm text-gray-500">{transaction.description}</p>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-sm sm:text-base truncate">{transaction.customerName}</p>
+                          <p className="text-xs sm:text-sm text-gray-500 truncate">{transaction.description}</p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className={`font-semibold ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}`}>
+                      <div className="text-right flex-shrink-0 ml-2">
+                        <p className={`font-semibold text-sm sm:text-base ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}`}>
                           {transaction.type === 'credit' ? '+' : '-'}₹{transaction.amount.toLocaleString()}
                         </p>
-                        <p className="text-sm text-gray-500">{transaction.date}</p>
+                        <p className="text-xs sm:text-sm text-gray-500">{transaction.date}</p>
                       </div>
                     </div>
                   ))}
@@ -547,14 +561,14 @@ const Index = () => {
             </Card>
           </TabsContent>
 
-          {/* New Suppliers Tab */}
-          <TabsContent value="suppliers" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold">Supplier & Inventory Management</h2>
-              <div className="flex space-x-3">
+          {/* Suppliers Tab */}
+          <TabsContent value="suppliers" className="space-y-4 sm:space-y-6">
+            <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+              <h2 className="text-xl sm:text-2xl font-bold">Supplier & Inventory</h2>
+              <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-3">
                 <Button
                   onClick={() => setShowSupplierForm(true)}
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-blue-600 hover:bg-blue-700 text-sm"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Supplier
@@ -562,6 +576,7 @@ const Index = () => {
                 <Button
                   onClick={() => setShowInventoryForm(true)}
                   variant="outline"
+                  className="text-sm"
                 >
                   <Package className="h-4 w-4 mr-2" />
                   Add Inventory
@@ -570,68 +585,68 @@ const Index = () => {
             </div>
 
             {/* Inventory Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium opacity-90">Total Inventory Value</CardTitle>
+                  <CardTitle className="text-sm font-medium opacity-90">Inventory Value</CardTitle>
                   <Package className="h-4 w-4 opacity-90" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">₹{totalInventoryValue.toLocaleString()}</div>
+                  <div className="text-xl sm:text-2xl font-bold">₹{totalInventoryValue.toLocaleString()}</div>
                   <p className="text-xs opacity-90 mt-1">All items combined</p>
                 </CardContent>
               </Card>
 
               <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium opacity-90">Low Stock Items</CardTitle>
+                  <CardTitle className="text-sm font-medium opacity-90">Low Stock</CardTitle>
                   <AlertTriangle className="h-4 w-4 opacity-90" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{lowStockItems.length}</div>
+                  <div className="text-xl sm:text-2xl font-bold">{lowStockItems.length}</div>
                   <p className="text-xs opacity-90 mt-1">Need restocking</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-r from-teal-500 to-teal-600 text-white">
+              <Card className="bg-gradient-to-r from-teal-500 to-teal-600 text-white sm:col-span-2 lg:col-span-1">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium opacity-90">Total Suppliers</CardTitle>
+                  <CardTitle className="text-sm font-medium opacity-90">Suppliers</CardTitle>
                   <Truck className="h-4 w-4 opacity-90" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{suppliers.length}</div>
+                  <div className="text-xl sm:text-2xl font-bold">{suppliers.length}</div>
                   <p className="text-xs opacity-90 mt-1">Active suppliers</p>
                 </CardContent>
               </Card>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
               {/* Suppliers List */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Truck className="h-5 w-5" />
+                  <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl">
+                    <Truck className="h-4 w-4 sm:h-5 sm:w-5" />
                     <span>Suppliers</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {suppliers.map((supplier) => (
-                      <div key={supplier.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                      <div key={supplier.id} className="p-3 sm:p-4 border rounded-lg hover:bg-gray-50">
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold">{supplier.name}</h3>
+                          <h3 className="font-semibold text-sm sm:text-base truncate flex-1 pr-2">{supplier.name}</h3>
                           <div className="flex space-x-1">
-                            <Button variant="ghost" size="sm">
-                              <Edit className="h-4 w-4" />
+                            <Button variant="ghost" size="sm" className="h-6 w-6 sm:h-8 sm:w-8 p-0">
+                              <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
-                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700">
-                              <Trash2 className="h-4 w-4" />
+                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 h-6 w-6 sm:h-8 sm:w-8 p-0">
+                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600">{supplier.phone}</p>
-                        <p className="text-sm text-gray-600">{supplier.email}</p>
-                        <p className="text-sm text-gray-500">{supplier.address}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 truncate">{supplier.phone}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 truncate">{supplier.email}</p>
+                        <p className="text-xs sm:text-sm text-gray-500 truncate">{supplier.address}</p>
                       </div>
                     ))}
                   </div>
@@ -641,38 +656,38 @@ const Index = () => {
               {/* Inventory List */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Package className="h-5 w-5" />
+                  <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl">
+                    <Package className="h-4 w-4 sm:h-5 sm:w-5" />
                     <span>Inventory Items</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {inventory.map((item) => (
-                      <div key={item.id} className={`p-4 border rounded-lg hover:bg-gray-50 ${item.quantity <= item.minStockLevel ? 'border-orange-200 bg-orange-50' : ''}`}>
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold">{item.name}</h3>
+                      <div key={item.id} className={`p-3 sm:p-4 border rounded-lg hover:bg-gray-50 ${item.quantity <= item.minStockLevel ? 'border-orange-200 bg-orange-50' : ''}`}>
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="font-semibold text-sm sm:text-base truncate flex-1 pr-2">{item.name}</h3>
                           {item.quantity <= item.minStockLevel && (
-                            <Badge variant="destructive" className="text-xs">
-                              <AlertTriangle className="h-3 w-3 mr-1" />
+                            <Badge variant="destructive" className="text-xs flex-shrink-0">
+                              <AlertTriangle className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
                               Low Stock
                             </Badge>
                           )}
                         </div>
-                        <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
-                          <p>Category: {item.category}</p>
-                          <p>Supplier: {item.supplierName}</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 mb-2">
+                          <p className="truncate">Category: {item.category}</p>
+                          <p className="truncate">Supplier: {item.supplierName}</p>
                           <p>Stock: {item.quantity} {item.unit}</p>
                           <p>Price: ₹{item.pricePerUnit}/{item.unit}</p>
                         </div>
-                        <div className="flex items-center justify-between mt-2">
-                          <span className="text-sm font-medium">Total Value: ₹{item.totalValue.toLocaleString()}</span>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs sm:text-sm font-medium">Value: ₹{item.totalValue.toLocaleString()}</span>
                           <div className="flex space-x-1">
-                            <Button variant="ghost" size="sm">
-                              <Edit className="h-4 w-4" />
+                            <Button variant="ghost" size="sm" className="h-6 w-6 sm:h-8 sm:w-8 p-0">
+                              <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
-                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700">
-                              <Trash2 className="h-4 w-4" />
+                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 h-6 w-6 sm:h-8 sm:w-8 p-0">
+                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
                           </div>
                         </div>
@@ -685,51 +700,54 @@ const Index = () => {
           </TabsContent>
 
           {/* Reports Tab */}
-          <TabsContent value="reports" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold">Reports & Analytics</h2>
-              <div className="flex space-x-3">
+          <TabsContent value="reports" className="space-y-4 sm:space-y-6">
+            <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+              <h2 className="text-xl sm:text-2xl font-bold">Reports & Analytics</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
                 <Button
                   onClick={() => generatePDFReport('weekly')}
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm"
+                  size="sm"
                 >
-                  <Download className="h-4 w-4 mr-2" />
+                  <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   Weekly PDF
                 </Button>
                 <Button
                   onClick={() => generatePDFReport('monthly')}
-                  className="bg-green-600 hover:bg-green-700"
+                  className="bg-green-600 hover:bg-green-700 text-xs sm:text-sm"
+                  size="sm"
                 >
-                  <Download className="h-4 w-4 mr-2" />
+                  <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   Monthly PDF
                 </Button>
                 <Button
                   onClick={() => generatePDFReport('annual')}
-                  className="bg-purple-600 hover:bg-purple-700"
+                  className="bg-purple-600 hover:bg-purple-700 text-xs sm:text-sm"
+                  size="sm"
                 >
-                  <Download className="h-4 w-4 mr-2" />
+                  <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   Annual PDF
                 </Button>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Top Customers (By Balance)</CardTitle>
+                  <CardTitle className="text-lg sm:text-xl">Top Customers (By Balance)</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     {customers
                       .sort((a, b) => Math.abs(b.balance) - Math.abs(a.balance))
                       .slice(0, 5)
                       .map((customer, index) => (
-                        <div key={customer.id} className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <span className="text-sm font-medium text-gray-500">#{index + 1}</span>
-                            <span className="font-medium">{customer.name}</span>
+                        <div key={customer.id} className="flex items-center justify-between py-2">
+                          <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+                            <span className="text-xs sm:text-sm font-medium text-gray-500 flex-shrink-0">#{index + 1}</span>
+                            <span className="font-medium text-sm sm:text-base truncate">{customer.name}</span>
                           </div>
-                          <Badge variant={customer.balance >= 0 ? "default" : "destructive"}>
+                          <Badge variant={customer.balance >= 0 ? "default" : "destructive"} className="text-xs flex-shrink-0 ml-2">
                             ₹{Math.abs(customer.balance).toLocaleString()}
                           </Badge>
                         </div>
@@ -740,27 +758,27 @@ const Index = () => {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Monthly Summary</CardTitle>
+                  <CardTitle className="text-lg sm:text-xl">Monthly Summary</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                      <span className="text-green-700 font-medium">Total Credit</span>
-                      <span className="text-green-700 font-bold">₹{totalCredit.toLocaleString()}</span>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex justify-between items-center p-2 sm:p-3 bg-green-50 rounded-lg">
+                      <span className="text-green-700 font-medium text-sm sm:text-base">Total Credit</span>
+                      <span className="text-green-700 font-bold text-sm sm:text-base">₹{totalCredit.toLocaleString()}</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                      <span className="text-red-700 font-medium">Total Debit</span>
-                      <span className="text-red-700 font-bold">₹{totalDebit.toLocaleString()}</span>
+                    <div className="flex justify-between items-center p-2 sm:p-3 bg-red-50 rounded-lg">
+                      <span className="text-red-700 font-medium text-sm sm:text-base">Total Debit</span>
+                      <span className="text-red-700 font-bold text-sm sm:text-base">₹{totalDebit.toLocaleString()}</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                      <span className="text-blue-700 font-medium">Net Balance</span>
-                      <span className={`font-bold ${netBalance >= 0 ? 'text-green-700' : 'text-red-700'}`}>
+                    <div className="flex justify-between items-center p-2 sm:p-3 bg-blue-50 rounded-lg">
+                      <span className="text-blue-700 font-medium text-sm sm:text-base">Net Balance</span>
+                      <span className={`font-bold text-sm sm:text-base ${netBalance >= 0 ? 'text-green-700' : 'text-red-700'}`}>
                         ₹{Math.abs(netBalance).toLocaleString()}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
-                      <span className="text-purple-700 font-medium">Inventory Value</span>
-                      <span className="text-purple-700 font-bold">₹{totalInventoryValue.toLocaleString()}</span>
+                    <div className="flex justify-between items-center p-2 sm:p-3 bg-purple-50 rounded-lg">
+                      <span className="text-purple-700 font-medium text-sm sm:text-base">Inventory Value</span>
+                      <span className="text-purple-700 font-bold text-sm sm:text-base">₹{totalInventoryValue.toLocaleString()}</span>
                     </div>
                   </div>
                 </CardContent>
