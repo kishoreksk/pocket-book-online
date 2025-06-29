@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -246,7 +247,7 @@ const Index = () => {
     
     // Header
     doc.setFontSize(20);
-    doc.text('BNP Fencing Works', 20, 20);
+    doc.text('BIP Fencing Works', 20, 20);
     doc.setFontSize(16);
     doc.text(`${reportType.charAt(0).toUpperCase() + reportType.slice(1)} Report`, 20, 35);
     doc.setFontSize(12);
@@ -339,7 +340,7 @@ const Index = () => {
     }
     
     // Save the PDF
-    const fileName = `BNP_Fencing_${reportType}_report_${currentDate.toISOString().split('T')[0]}.pdf`;
+    const fileName = `BIP_Fencing_${reportType}_report_${currentDate.toISOString().split('T')[0]}.pdf`;
     doc.save(fileName);
   };
 
@@ -354,7 +355,7 @@ const Index = () => {
                 <IndianRupee className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-lg sm:text-xl font-bold text-gray-900">BNP Fencing Works</h1>
+                <h1 className="text-lg sm:text-xl font-bold text-gray-900">BIP Fencing Works</h1>
                 <p className="text-xs sm:text-sm text-gray-500 hidden sm:block">Digital Ledger & Inventory</p>
               </div>
             </div>
