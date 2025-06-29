@@ -385,17 +385,46 @@ const Index = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6 sm:space-y-8">
-          <TabsList className="grid w-full grid-cols-5 h-10 sm:h-12 text-xs sm:text-sm lg:w-[500px] bg-white/70 backdrop-blur-sm shadow-lg rounded-xl">
-            <TabsTrigger value="dashboard" className="px-1 sm:px-3 rounded-lg">Dashboard</TabsTrigger>
-            <TabsTrigger value="customers" className="px-1 sm:px-3 rounded-lg">Customers</TabsTrigger>
-            <TabsTrigger value="transactions" className="px-1 sm:px-3 rounded-lg">Trans</TabsTrigger>
-            <TabsTrigger value="suppliers" className="px-1 sm:px-3 rounded-lg">Suppliers</TabsTrigger>
-            <TabsTrigger value="reports" className="px-1 sm:px-3 rounded-lg">Reports</TabsTrigger>
-          </TabsList>
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8 sm:space-y-10">
+          {/* Enhanced Navigation Tabs */}
+          <div className="flex justify-center">
+            <TabsList className="grid grid-cols-5 w-full max-w-2xl h-14 sm:h-16 p-2 bg-white/90 backdrop-blur-sm shadow-xl border border-gray-200/50 rounded-2xl">
+              <TabsTrigger 
+                value="dashboard" 
+                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-blue-50 hover:text-blue-700"
+              >
+                Dashboard
+              </TabsTrigger>
+              <TabsTrigger 
+                value="customers" 
+                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-green-50 hover:text-green-700"
+              >
+                Customers
+              </TabsTrigger>
+              <TabsTrigger 
+                value="transactions" 
+                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-purple-50 hover:text-purple-700"
+              >
+                <span className="hidden sm:inline">Transactions</span>
+                <span className="sm:hidden">Trans</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="suppliers" 
+                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-orange-50 hover:text-orange-700"
+              >
+                Suppliers
+              </TabsTrigger>
+              <TabsTrigger 
+                value="reports" 
+                className="px-3 sm:px-6 py-3 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-indigo-50 hover:text-indigo-700"
+              >
+                Reports
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           {/* Dashboard Tab */}
-          <TabsContent value="dashboard" className="space-y-6 sm:space-y-8">
+          <TabsContent value="dashboard" className="space-y-8 sm:space-y-10">
             <DashboardStats 
               totalCredit={totalCredit}
               totalDebit={totalDebit}
@@ -403,11 +432,11 @@ const Index = () => {
               totalCustomers={customers.length}
             />
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
               <TransactionChart transactions={transactions} />
               
               <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 hover:shadow-2xl transition-all duration-300">
-                <CardHeader className="pb-4 sm:pb-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">
+                <CardHeader className="pb-6 sm:pb-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">
                   <CardTitle className="flex items-center space-x-3 text-lg sm:text-xl text-gray-800">
                     <div className="p-2 bg-blue-100 rounded-lg">
                       <Users className="h-5 w-5 text-blue-600" />
@@ -415,10 +444,10 @@ const Index = () => {
                     <span>Recent Customers</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <div className="space-y-4 sm:space-y-5">
+                <CardContent className="p-8">
+                  <div className="space-y-6 sm:space-y-7">
                     {customers.slice(0, 5).map((customer) => (
-                      <div key={customer.id} className="flex items-center justify-between p-4 sm:p-5 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl hover:from-blue-50 hover:to-indigo-50 transition-all duration-200 border border-gray-100 hover:border-blue-200 hover:shadow-md">
+                      <div key={customer.id} className="flex items-center justify-between p-5 sm:p-6 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl hover:from-blue-50 hover:to-indigo-50 transition-all duration-200 border border-gray-100 hover:border-blue-200 hover:shadow-md">
                         <div className="min-w-0 flex-1">
                           <p className="font-semibold text-sm sm:text-base truncate text-gray-800">{customer.name}</p>
                           <p className="text-xs sm:text-sm text-gray-500 truncate mt-1">{customer.phone}</p>
@@ -441,9 +470,9 @@ const Index = () => {
           </TabsContent>
 
           {/* Customers Tab */}
-          <TabsContent value="customers" className="space-y-6 sm:space-y-8">
+          <TabsContent value="customers" className="space-y-8 sm:space-y-10">
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
-              <CardHeader className="pb-4 sm:pb-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-t-lg">
+              <CardHeader className="pb-6 sm:pb-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-t-lg">
                 <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
                   <CardTitle className="text-lg sm:text-xl flex items-center space-x-3 text-gray-800">
                     <div className="p-2 bg-green-100 rounded-lg">
@@ -462,16 +491,16 @@ const Index = () => {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <CardContent className="p-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                   {filteredCustomers.map((customer) => (
                     <Card 
                       key={customer.id} 
                       className="hover:shadow-xl transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:scale-105"
                       onClick={() => handleCustomerClick(customer)}
                     >
-                      <CardContent className="p-5 sm:p-6">
-                        <div className="flex items-start justify-between mb-3 sm:mb-4">
+                      <CardContent className="p-6 sm:p-8">
+                        <div className="flex items-start justify-between mb-4 sm:mb-5">
                           <h3 className="font-semibold text-sm sm:text-lg pr-2 truncate flex-1 text-gray-800">{customer.name}</h3>
                           <div className="flex space-x-1 flex-shrink-0">
                             <Button 
@@ -503,8 +532,8 @@ const Index = () => {
                             </Button>
                           </div>
                         </div>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 truncate">{customer.phone}</p>
-                        <div className="flex items-center justify-between mb-3">
+                        <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-5 truncate">{customer.phone}</p>
+                        <div className="flex items-center justify-between mb-4">
                           <span className="text-xs sm:text-sm text-gray-500 font-medium">Balance:</span>
                           <Badge 
                             variant={customer.balance >= 0 ? "default" : "destructive"}
@@ -535,9 +564,9 @@ const Index = () => {
           </TabsContent>
 
           {/* Transactions Tab */}
-          <TabsContent value="transactions" className="space-y-6 sm:space-y-8">
+          <TabsContent value="transactions" className="space-y-8 sm:space-y-10">
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
-              <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-t-lg">
+              <CardHeader className="pb-6 sm:pb-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-t-lg">
                 <CardTitle className="text-lg sm:text-xl flex items-center space-x-3 text-gray-800">
                   <div className="p-2 bg-purple-100 rounded-lg">
                     <TrendingUp className="h-5 w-5 text-purple-600" />
@@ -545,12 +574,12 @@ const Index = () => {
                   <span>Transaction History</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-4 sm:space-y-5">
+              <CardContent className="p-8">
+                <div className="space-y-6 sm:space-y-7">
                   {transactions.map((transaction) => (
-                    <div key={transaction.id} className="flex items-center justify-between p-4 sm:p-5 border-0 rounded-xl hover:shadow-md transition-all duration-200 bg-gradient-to-r from-gray-50 to-purple-50/30 hover:from-purple-50 hover:to-pink-50 border border-gray-100 hover:border-purple-200">
-                      <div className="flex items-center space-x-4 sm:space-x-5 min-w-0 flex-1">
-                        <div className={`p-2.5 sm:p-3 rounded-full flex-shrink-0 shadow-sm ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
+                    <div key={transaction.id} className="flex items-center justify-between p-5 sm:p-6 border-0 rounded-xl hover:shadow-md transition-all duration-200 bg-gradient-to-r from-gray-50 to-purple-50/30 hover:from-purple-50 hover:to-pink-50 border border-gray-100 hover:border-purple-200">
+                      <div className="flex items-center space-x-5 sm:space-x-6 min-w-0 flex-1">
+                        <div className={`p-3 sm:p-4 rounded-full flex-shrink-0 shadow-sm ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
                           {transaction.type === 'credit' ? (
                             <TrendingUp className={`h-4 w-4 sm:h-5 sm:w-5 text-green-600`} />
                           ) : (
