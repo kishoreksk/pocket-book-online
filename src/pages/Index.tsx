@@ -385,457 +385,455 @@ const Index = () => {
 
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-6 sm:py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8 sm:space-y-10">
-          {/* Enhanced Navigation Tabs with Icons */}
-          <div className="flex justify-center">
-            <TabsList className="grid grid-cols-5 w-full max-w-3xl h-16 sm:h-18 p-2 bg-white/95 backdrop-blur-sm shadow-xl border border-gray-200/50 rounded-3xl">
+          {/* Floating Navigation Tabs */}
+          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 sm:relative sm:bottom-auto sm:left-auto sm:transform-none sm:flex sm:justify-center">
+            <TabsList className="grid grid-cols-5 w-80 sm:w-full sm:max-w-4xl h-16 sm:h-20 p-2 bg-white/95 backdrop-blur-lg shadow-2xl border border-white/20 rounded-3xl sm:rounded-3xl floating-nav">
               <TabsTrigger 
                 value="dashboard" 
-                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-blue-50 hover:text-blue-700 space-y-1"
+                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-blue-500/25 hover:bg-blue-50 hover:text-blue-700 space-y-0.5 sm:space-y-1"
               >
-                <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden sm:inline">Dashboard</span>
-                <span className="sm:hidden text-xs">Dash</span>
+                <BarChart3 className="h-4 w-4 sm:h-6 sm:w-6" />
+                <span className="text-xs sm:text-sm">Dashboard</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="customers" 
-                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-green-50 hover:text-green-700 space-y-1"
+                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-green-500/25 hover:bg-green-50 hover:text-green-700 space-y-0.5 sm:space-y-1"
               >
-                <Users className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden sm:inline">Customers</span>
-                <span className="sm:hidden text-xs">Cust</span>
+                <Users className="h-4 w-4 sm:h-6 sm:w-6" />
+                <span className="text-xs sm:text-sm">Customers</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="transactions" 
-                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-purple-50 hover:text-purple-700 space-y-1"
+                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-purple-500/25 hover:bg-purple-50 hover:text-purple-700 space-y-0.5 sm:space-y-1"
               >
-                <Receipt className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden sm:inline">Transactions</span>
-                <span className="sm:hidden text-xs">Trans</span>
+                <Receipt className="h-4 w-4 sm:h-6 sm:w-6" />
+                <span className="text-xs sm:text-sm">Transactions</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="suppliers" 
-                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-orange-50 hover:text-orange-700 space-y-1"
+                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-orange-500/25 hover:bg-orange-50 hover:text-orange-700 space-y-0.5 sm:space-y-1"
               >
-                <Truck className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden sm:inline">Suppliers</span>
-                <span className="sm:hidden text-xs">Supp</span>
+                <Truck className="h-4 w-4 sm:h-6 sm:w-6" />
+                <span className="text-xs sm:text-sm">Suppliers</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="reports" 
-                className="flex flex-col items-center justify-center px-2 sm:px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-indigo-50 hover:text-indigo-700 space-y-1"
+                className="flex flex-col items-center justify-center px-2 sm:px-6 py-3 sm:py-4 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-indigo-500/25 hover:bg-indigo-50 hover:text-indigo-700 space-y-0.5 sm:space-y-1"
               >
-                <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden sm:inline">Reports</span>
-                <span className="sm:hidden text-xs">Rpts</span>
+                <FileText className="h-4 w-4 sm:h-6 sm:w-6" />
+                <span className="text-xs sm:text-sm">Reports</span>
               </TabsTrigger>
             </TabsList>
           </div>
 
-          {/* Dashboard Tab */}
-          <TabsContent value="dashboard" className="space-y-8 sm:space-y-10">
-            <DashboardStats 
-              totalCredit={totalCredit}
-              totalDebit={totalDebit}
-              netBalance={netBalance}
-              totalCustomers={customers.length}
-            />
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
-              <TransactionChart transactions={transactions} />
+          {/* Add bottom padding for mobile to account for floating nav */}
+          <div className="pb-24 sm:pb-0">
+            {/* Dashboard Tab */}
+            <TabsContent value="dashboard" className="space-y-8 sm:space-y-10">
+              <DashboardStats 
+                totalCredit={totalCredit}
+                totalDebit={totalDebit}
+                netBalance={netBalance}
+                totalCustomers={customers.length}
+              />
               
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 hover:shadow-2xl transition-all duration-300">
-                <CardHeader className="pb-6 sm:pb-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">
-                  <CardTitle className="flex items-center space-x-3 text-lg sm:text-xl text-gray-800">
-                    <div className="p-2 bg-blue-100 rounded-lg">
-                      <Users className="h-5 w-5 text-blue-600" />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
+                <TransactionChart transactions={transactions} />
+                
+                <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 hover:shadow-2xl transition-all duration-300">
+                  <CardHeader className="pb-6 sm:pb-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">
+                    <CardTitle className="flex items-center space-x-3 text-lg sm:text-xl text-gray-800">
+                      <div className="p-2 bg-blue-100 rounded-lg">
+                        <Users className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <span>Recent Customers</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-8">
+                    <div className="space-y-6 sm:space-y-7">
+                      {customers.slice(0, 5).map((customer) => (
+                        <div key={customer.id} className="flex items-center justify-between p-5 sm:p-6 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl hover:from-blue-50 hover:to-indigo-50 transition-all duration-200 border border-gray-100 hover:border-blue-200 hover:shadow-md">
+                          <div className="min-w-0 flex-1">
+                            <p className="font-semibold text-sm sm:text-base truncate text-gray-800">{customer.name}</p>
+                            <p className="text-xs sm:text-sm text-gray-500 truncate mt-1">{customer.phone}</p>
+                          </div>
+                          <Badge 
+                            variant={customer.balance >= 0 ? "default" : "destructive"}
+                            className="font-semibold text-xs sm:text-sm ml-3 flex-shrink-0 px-3 py-1.5 rounded-full shadow-sm"
+                          >
+                            ₹{Math.abs(customer.balance).toLocaleString()}
+                            <span className="hidden sm:inline ml-1">
+                              {customer.balance >= 0 ? 'To Give' : 'To Get'}
+                            </span>
+                          </Badge>
+                        </div>
+                      ))}
                     </div>
-                    <span>Recent Customers</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            {/* Customers Tab */}
+            <TabsContent value="customers" className="space-y-8 sm:space-y-10">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
+                <CardHeader className="pb-6 sm:pb-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-t-lg">
+                  <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                    <CardTitle className="text-lg sm:text-xl flex items-center space-x-3 text-gray-800">
+                      <div className="p-2 bg-green-100 rounded-lg">
+                        <Users className="h-5 w-5 text-green-600" />
+                      </div>
+                      <span>Customer Management</span>
+                    </CardTitle>
+                    <div className="relative w-full sm:w-72">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                      <Input
+                        placeholder="Search customers..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-10 text-sm bg-white/80 border-gray-200 focus:border-green-300 focus:ring-green-200 rounded-lg"
+                      />
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    {filteredCustomers.map((customer) => (
+                      <Card 
+                        key={customer.id} 
+                        className="hover:shadow-xl transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:scale-105"
+                        onClick={() => handleCustomerClick(customer)}
+                      >
+                        <CardContent className="p-6 sm:p-8">
+                          <div className="flex items-start justify-between mb-4 sm:mb-5">
+                            <h3 className="font-semibold text-sm sm:text-lg pr-2 truncate flex-1 text-gray-800">{customer.name}</h3>
+                            <div className="flex space-x-1 flex-shrink-0">
+                              <Button 
+                                variant="ghost" 
+                                size="sm"
+                                className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-blue-100 rounded-full"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleCustomerClick(customer);
+                                }}
+                              >
+                                <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
+                              </Button>
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-green-100 rounded-full"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Edit className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
+                              </Button>
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                className="text-red-500 hover:text-red-700 hover:bg-red-100 h-7 w-7 sm:h-8 sm:w-8 p-0 rounded-full"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-5 truncate">{customer.phone}</p>
+                          <div className="flex items-center justify-between mb-4">
+                            <span className="text-xs sm:text-sm text-gray-500 font-medium">Balance:</span>
+                            <Badge 
+                              variant={customer.balance >= 0 ? "default" : "destructive"}
+                              className="font-semibold text-xs px-3 py-1.5 rounded-full shadow-sm"
+                            >
+                              {customer.balance >= 0 ? (
+                                <TrendingUp className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
+                              ) : (
+                                <TrendingDown className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
+                              )}
+                              ₹{Math.abs(customer.balance).toLocaleString()}
+                            </Badge>
+                          </div>
+                          <div className="space-y-2">
+                            <p className="text-xs text-gray-400">
+                              Last transaction: {customer.lastTransaction}
+                            </p>
+                            <p className="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded-full text-center">
+                              Tap to view history
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Transactions Tab */}
+            <TabsContent value="transactions" className="space-y-8 sm:space-y-10">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
+                <CardHeader className="pb-6 sm:pb-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-t-lg">
+                  <CardTitle className="text-lg sm:text-xl flex items-center space-x-3 text-gray-800">
+                    <div className="p-2 bg-purple-100 rounded-lg">
+                      <TrendingUp className="h-5 w-5 text-purple-600" />
+                    </div>
+                    <span>Transaction History</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-8">
                   <div className="space-y-6 sm:space-y-7">
-                    {customers.slice(0, 5).map((customer) => (
-                      <div key={customer.id} className="flex items-center justify-between p-5 sm:p-6 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl hover:from-blue-50 hover:to-indigo-50 transition-all duration-200 border border-gray-100 hover:border-blue-200 hover:shadow-md">
-                        <div className="min-w-0 flex-1">
-                          <p className="font-semibold text-sm sm:text-base truncate text-gray-800">{customer.name}</p>
-                          <p className="text-xs sm:text-sm text-gray-500 truncate mt-1">{customer.phone}</p>
-                        </div>
-                        <Badge 
-                          variant={customer.balance >= 0 ? "default" : "destructive"}
-                          className="font-semibold text-xs sm:text-sm ml-3 flex-shrink-0 px-3 py-1.5 rounded-full shadow-sm"
-                        >
-                          ₹{Math.abs(customer.balance).toLocaleString()}
-                          <span className="hidden sm:inline ml-1">
-                            {customer.balance >= 0 ? 'To Give' : 'To Get'}
-                          </span>
-                        </Badge>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          {/* Customers Tab */}
-          <TabsContent value="customers" className="space-y-8 sm:space-y-10">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
-              <CardHeader className="pb-6 sm:pb-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-t-lg">
-                <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-                  <CardTitle className="text-lg sm:text-xl flex items-center space-x-3 text-gray-800">
-                    <div className="p-2 bg-green-100 rounded-lg">
-                      <Users className="h-5 w-5 text-green-600" />
-                    </div>
-                    <span>Customer Management</span>
-                  </CardTitle>
-                  <div className="relative w-full sm:w-72">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                    <Input
-                      placeholder="Search customers..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 text-sm bg-white/80 border-gray-200 focus:border-green-300 focus:ring-green-200 rounded-lg"
-                    />
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                  {filteredCustomers.map((customer) => (
-                    <Card 
-                      key={customer.id} 
-                      className="hover:shadow-xl transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:scale-105"
-                      onClick={() => handleCustomerClick(customer)}
-                    >
-                      <CardContent className="p-6 sm:p-8">
-                        <div className="flex items-start justify-between mb-4 sm:mb-5">
-                          <h3 className="font-semibold text-sm sm:text-lg pr-2 truncate flex-1 text-gray-800">{customer.name}</h3>
-                          <div className="flex space-x-1 flex-shrink-0">
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-blue-100 rounded-full"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleCustomerClick(customer);
-                              }}
-                            >
-                              <Eye className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
-                            </Button>
-                            <Button 
-                              variant="ghost" 
-                              size="sm" 
-                              className="h-7 w-7 sm:h-8 sm:w-8 p-0 hover:bg-green-100 rounded-full"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <Edit className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
-                            </Button>
-                            <Button 
-                              variant="ghost" 
-                              size="sm" 
-                              className="text-red-500 hover:text-red-700 hover:bg-red-100 h-7 w-7 sm:h-8 sm:w-8 p-0 rounded-full"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
-                            </Button>
-                          </div>
-                        </div>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-5 truncate">{customer.phone}</p>
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-xs sm:text-sm text-gray-500 font-medium">Balance:</span>
-                          <Badge 
-                            variant={customer.balance >= 0 ? "default" : "destructive"}
-                            className="font-semibold text-xs px-3 py-1.5 rounded-full shadow-sm"
-                          >
-                            {customer.balance >= 0 ? (
-                              <TrendingUp className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
+                    {transactions.map((transaction) => (
+                      <div key={transaction.id} className="flex items-center justify-between p-5 sm:p-6 border-0 rounded-xl hover:shadow-md transition-all duration-200 bg-gradient-to-r from-gray-50 to-purple-50/30 hover:from-purple-50 hover:to-pink-50 border border-gray-100 hover:border-purple-200">
+                        <div className="flex items-center space-x-5 sm:space-x-6 min-w-0 flex-1">
+                          <div className={`p-3 sm:p-4 rounded-full flex-shrink-0 shadow-sm ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
+                            {transaction.type === 'credit' ? (
+                              <TrendingUp className={`h-4 w-4 sm:h-5 sm:w-5 text-green-600`} />
                             ) : (
-                              <TrendingDown className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
+                              <TrendingDown className={`h-4 w-4 sm:h-5 sm:w-5 text-red-600`} />
                             )}
-                            ₹{Math.abs(customer.balance).toLocaleString()}
-                          </Badge>
-                        </div>
-                        <div className="space-y-2">
-                          <p className="text-xs text-gray-400">
-                            Last transaction: {customer.lastTransaction}
-                          </p>
-                          <p className="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded-full text-center">
-                            Tap to view history
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Transactions Tab */}
-          <TabsContent value="transactions" className="space-y-8 sm:space-y-10">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
-              <CardHeader className="pb-6 sm:pb-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-t-lg">
-                <CardTitle className="text-lg sm:text-xl flex items-center space-x-3 text-gray-800">
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <TrendingUp className="h-5 w-5 text-purple-600" />
-                  </div>
-                  <span>Transaction History</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-8">
-                <div className="space-y-6 sm:space-y-7">
-                  {transactions.map((transaction) => (
-                    <div key={transaction.id} className="flex items-center justify-between p-5 sm:p-6 border-0 rounded-xl hover:shadow-md transition-all duration-200 bg-gradient-to-r from-gray-50 to-purple-50/30 hover:from-purple-50 hover:to-pink-50 border border-gray-100 hover:border-purple-200">
-                      <div className="flex items-center space-x-5 sm:space-x-6 min-w-0 flex-1">
-                        <div className={`p-3 sm:p-4 rounded-full flex-shrink-0 shadow-sm ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'}`}>
-                          {transaction.type === 'credit' ? (
-                            <TrendingUp className={`h-4 w-4 sm:h-5 sm:w-5 text-green-600`} />
-                          ) : (
-                            <TrendingDown className={`h-4 w-4 sm:h-5 sm:w-5 text-red-600`} />
-                          )}
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="font-semibold text-sm sm:text-base truncate text-gray-800">{transaction.customerName}</p>
-                          <p className="text-xs sm:text-sm text-gray-600 truncate mt-1">{transaction.description}</p>
-                        </div>
-                      </div>
-                      <div className="text-right flex-shrink-0 ml-3">
-                        <p className={`font-bold text-sm sm:text-base ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}`}>
-                          {transaction.type === 'credit' ? '+' : '-'}₹{transaction.amount.toLocaleString()}
-                        </p>
-                        <p className="text-xs sm:text-sm text-gray-500 mt-1">{transaction.date}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Suppliers Tab */}
-          <TabsContent value="suppliers" className="space-y-4 sm:space-y-6">
-            <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-              <h2 className="text-xl sm:text-2xl font-bold">Supplier & Inventory</h2>
-              <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-3">
-                <Button
-                  onClick={() => setShowSupplierForm(true)}
-                  className="bg-blue-600 hover:bg-blue-700 text-sm"
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Supplier
-                </Button>
-                <Button
-                  onClick={() => setShowInventoryForm(true)}
-                  variant="outline"
-                  className="text-sm"
-                >
-                  <Package className="h-4 w-4 mr-2" />
-                  Add Inventory
-                </Button>
-              </div>
-            </div>
-
-            {/* Inventory Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium opacity-90">Inventory Value</CardTitle>
-                  <Package className="h-4 w-4 opacity-90" />
-                </CardHeader>
-                <CardContent>
-                  <div className="text-xl sm:text-2xl font-bold">₹{totalInventoryValue.toLocaleString()}</div>
-                  <p className="text-xs opacity-90 mt-1">All items combined</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium opacity-90">Low Stock</CardTitle>
-                  <AlertTriangle className="h-4 w-4 opacity-90" />
-                </CardHeader>
-                <CardContent>
-                  <div className="text-xl sm:text-2xl font-bold">{lowStockItems.length}</div>
-                  <p className="text-xs opacity-90 mt-1">Need restocking</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-r from-teal-500 to-teal-600 text-white sm:col-span-2 lg:col-span-1">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium opacity-90">Suppliers</CardTitle>
-                  <Truck className="h-4 w-4 opacity-90" />
-                </CardHeader>
-                <CardContent>
-                  <div className="text-xl sm:text-2xl font-bold">{suppliers.length}</div>
-                  <p className="text-xs opacity-90 mt-1">Active suppliers</p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
-              {/* Suppliers List */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl">
-                    <Truck className="h-4 w-4 sm:h-5 sm:w-5" />
-                    <span>Suppliers</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3 sm:space-y-4">
-                    {suppliers.map((supplier) => (
-                      <div key={supplier.id} className="p-3 sm:p-4 border rounded-lg hover:bg-gray-50">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold text-sm sm:text-base truncate flex-1 pr-2">{supplier.name}</h3>
-                          <div className="flex space-x-1">
-                            <Button variant="ghost" size="sm" className="h-6 w-6 sm:h-8 sm:w-8 p-0">
-                              <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
-                            </Button>
-                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 h-6 w-6 sm:h-8 sm:w-8 p-0">
-                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
-                            </Button>
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-semibold text-sm sm:text-base truncate text-gray-800">{transaction.customerName}</p>
+                            <p className="text-xs sm:text-sm text-gray-600 truncate mt-1">{transaction.description}</p>
                           </div>
                         </div>
-                        <p className="text-xs sm:text-sm text-gray-600 truncate">{supplier.phone}</p>
-                        <p className="text-xs sm:text-sm text-gray-600 truncate">{supplier.email}</p>
-                        <p className="text-xs sm:text-sm text-gray-500 truncate">{supplier.address}</p>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Inventory List */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl">
-                    <Package className="h-4 w-4 sm:h-5 sm:w-5" />
-                    <span>Inventory Items</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3 sm:space-y-4">
-                    {inventory.map((item) => (
-                      <div key={item.id} className={`p-3 sm:p-4 border rounded-lg hover:bg-gray-50 ${item.quantity <= item.minStockLevel ? 'border-orange-200 bg-orange-50' : ''}`}>
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="font-semibold text-sm sm:text-base truncate flex-1 pr-2">{item.name}</h3>
-                          {item.quantity <= item.minStockLevel && (
-                            <Badge variant="destructive" className="text-xs flex-shrink-0">
-                              <AlertTriangle className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
-                              Low Stock
-                            </Badge>
-                          )}
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 mb-2">
-                          <p className="truncate">Category: {item.category}</p>
-                          <p className="truncate">Supplier: {item.supplierName}</p>
-                          <p>Stock: {item.quantity} {item.unit}</p>
-                          <p>Price: ₹{item.pricePerUnit}/{item.unit}</p>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs sm:text-sm font-medium">Value: ₹{item.totalValue.toLocaleString()}</span>
-                          <div className="flex space-x-1">
-                            <Button variant="ghost" size="sm" className="h-6 w-6 sm:h-8 sm:w-8 p-0">
-                              <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
-                            </Button>
-                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 h-6 w-6 sm:h-8 sm:w-8 p-0">
-                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
-                            </Button>
-                          </div>
+                        <div className="text-right flex-shrink-0 ml-3">
+                          <p className={`font-bold text-sm sm:text-base ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}`}>
+                            {transaction.type === 'credit' ? '+' : '-'}₹{transaction.amount.toLocaleString()}
+                          </p>
+                          <p className="text-xs sm:text-sm text-gray-500 mt-1">{transaction.date}</p>
                         </div>
                       </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
-            </div>
-          </TabsContent>
+            </TabsContent>
 
-          {/* Reports Tab */}
-          <TabsContent value="reports" className="space-y-4 sm:space-y-6">
-            <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-              <h2 className="text-xl sm:text-2xl font-bold">Reports & Analytics</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
-                <Button
-                  onClick={() => generatePDFReport('weekly')}
-                  className="bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm"
-                  size="sm"
-                >
-                  <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                  Weekly PDF
-                </Button>
-                <Button
-                  onClick={() => generatePDFReport('monthly')}
-                  className="bg-green-600 hover:bg-green-700 text-xs sm:text-sm"
-                  size="sm"
-                >
-                  <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                  Monthly PDF
-                </Button>
-                <Button
-                  onClick={() => generatePDFReport('annual')}
-                  className="bg-purple-600 hover:bg-purple-700 text-xs sm:text-sm"
-                  size="sm"
-                >
-                  <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                  Annual PDF
-                </Button>
+            {/* Suppliers Tab */}
+            <TabsContent value="suppliers" className="space-y-4 sm:space-y-6">
+              <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                <h2 className="text-xl sm:text-2xl font-bold">Supplier & Inventory</h2>
+                <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-3">
+                  <Button
+                    onClick={() => setShowSupplierForm(true)}
+                    className="bg-blue-600 hover:bg-blue-700 text-sm"
+                  >
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Supplier
+                  </Button>
+                  <Button
+                    onClick={() => setShowInventoryForm(true)}
+                    variant="outline"
+                    className="text-sm"
+                  >
+                    <Package className="h-4 w-4 mr-2" />
+                    Add Inventory
+                  </Button>
+                </div>
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg sm:text-xl">Top Customers (By Balance)</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 sm:space-y-3">
-                    {customers
-                      .sort((a, b) => Math.abs(b.balance) - Math.abs(a.balance))
-                      .slice(0, 5)
-                      .map((customer, index) => (
-                        <div key={customer.id} className="flex items-center justify-between py-2">
-                          <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
-                            <span className="text-xs sm:text-sm font-medium text-gray-500 flex-shrink-0">#{index + 1}</span>
-                            <span className="font-medium text-sm sm:text-base truncate">{customer.name}</span>
+              {/* Inventory Stats */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium opacity-90">Inventory Value</CardTitle>
+                    <Package className="h-4 w-4 opacity-90" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-xl sm:text-2xl font-bold">₹{totalInventoryValue.toLocaleString()}</div>
+                    <p className="text-xs opacity-90 mt-1">All items combined</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium opacity-90">Low Stock</CardTitle>
+                    <AlertTriangle className="h-4 w-4 opacity-90" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-xl sm:text-2xl font-bold">{lowStockItems.length}</div>
+                    <p className="text-xs opacity-90 mt-1">Need restocking</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gradient-to-r from-teal-500 to-teal-600 text-white sm:col-span-2 lg:col-span-1">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium opacity-90">Suppliers</CardTitle>
+                    <Truck className="h-4 w-4 opacity-90" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-xl sm:text-2xl font-bold">{suppliers.length}</div>
+                    <p className="text-xs opacity-90 mt-1">Active suppliers</p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
+                {/* Suppliers List */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl">
+                      <Truck className="h-4 w-4 sm:h-5 sm:w-5" />
+                      <span>Suppliers</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3 sm:space-y-4">
+                      {suppliers.map((supplier) => (
+                        <div key={supplier.id} className="p-3 sm:p-4 border rounded-lg hover:bg-gray-50">
+                          <div className="flex items-center justify-between mb-2">
+                            <h3 className="font-semibold text-sm sm:text-base truncate flex-1 pr-2">{supplier.name}</h3>
+                            <div className="flex space-x-1">
+                              <Button variant="ghost" size="sm" className="h-6 w-6 sm:h-8 sm:w-8 p-0">
+                                <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
+                              </Button>
+                              <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 h-6 w-6 sm:h-8 sm:w-8 p-0">
+                                <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                              </Button>
+                            </div>
                           </div>
-                          <Badge variant={customer.balance >= 0 ? "default" : "destructive"} className="text-xs flex-shrink-0 ml-2">
-                            ₹{Math.abs(customer.balance).toLocaleString()}
-                          </Badge>
+                          <p className="text-xs sm:text-sm text-gray-600 truncate">{supplier.phone}</p>
+                          <p className="text-xs sm:text-sm text-gray-600 truncate">{supplier.email}</p>
+                          <p className="text-xs sm:text-sm text-gray-500 truncate">{supplier.address}</p>
                         </div>
                       ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    </div>
+                  </CardContent>
+                </Card>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg sm:text-xl">Monthly Summary</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3 sm:space-y-4">
-                    <div className="flex justify-between items-center p-2 sm:p-3 bg-green-50 rounded-lg">
-                      <span className="text-green-700 font-medium text-sm sm:text-base">Total Credit</span>
-                      <span className="text-green-700 font-bold text-sm sm:text-base">₹{totalCredit.toLocaleString()}</span>
+                {/* Inventory List */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2 text-lg sm:text-xl">
+                      <Package className="h-4 w-4 sm:h-5 sm:w-5" />
+                      <span>Inventory Items</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3 sm:space-y-4">
+                      {inventory.map((item) => (
+                        <div key={item.id} className={`p-3 sm:p-4 border rounded-lg hover:bg-gray-50 ${item.quantity <= item.minStockLevel ? 'border-orange-200 bg-orange-50' : ''}`}>
+                          <div className="flex items-start justify-between mb-2">
+                            <h3 className="font-semibold text-sm sm:text-base truncate flex-1 pr-2">{item.name}</h3>
+                            {item.quantity <= item.minStockLevel && (
+                              <Badge variant="destructive" className="text-xs flex-shrink-0">
+                                <AlertTriangle className="h-2 w-2 sm:h-3 sm:w-3 mr-1" />
+                                Low Stock
+                              </Badge>
+                            )}
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 mb-2">
+                            <p className="truncate">Category: {item.category}</p>
+                            <p className="truncate">Supplier: {item.supplierName}</p>
+                            <p>Stock: {item.quantity} {item.unit}</p>
+                            <p>Price: ₹{item.pricePerUnit}/{item.unit}</p>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs sm:text-sm font-medium">Value: ₹{item.totalValue.toLocaleString()}</span>
+                            <div className="flex space-x-1">
+                              <Button variant="ghost" size="sm" className="h-6 w-6 sm:h-8 sm:w-8 p-0">
+                                <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
+                              </Button>
+                              <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 h-6 w-6 sm:h-8 sm:w-8 p-0">
+                                <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="flex justify-between items-center p-2 sm:p-3 bg-red-50 rounded-lg">
-                      <span className="text-red-700 font-medium text-sm sm:text-base">Total Debit</span>
-                      <span className="text-red-700 font-bold text-sm sm:text-base">₹{totalDebit.toLocaleString()}</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            {/* Reports Tab */}
+            <TabsContent value="reports" className="space-y-4 sm:space-y-6">
+              <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                <h2 className="text-xl sm:text-2xl font-bold">Reports & Analytics</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+                  <Button
+                    onClick={() => generatePDFReport('weekly')}
+                    className="bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm"
+                    size="sm"
+                  >
+                    <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                    Weekly PDF
+                  </Button>
+                  <Button
+                    onClick={() => generatePDFReport('monthly')}
+                    className="bg-green-600 hover:bg-green-700 text-xs sm:text-sm"
+                    size="sm"
+                  >
+                    <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                    Monthly PDF
+                  </Button>
+                  <Button
+                    onClick={() => generatePDFReport('annual')}
+                    className="bg-purple-600 hover:bg-purple-700 text-xs sm:text-sm"
+                    size="sm"
+                  >
+                    <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                    Annual PDF
+                  </Button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg sm:text-xl">Top Customers (By Balance)</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2 sm:space-y-3">
+                      {customers
+                        .sort((a, b) => Math.abs(b.balance) - Math.abs(a.balance))
+                        .slice(0, 5)
+                        .map((customer, index) => (
+                          <div key={customer.id} className="flex items-center justify-between py-2">
+                            <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+                              <span className="text-xs sm:text-sm font-medium text-gray-500 flex-shrink-0">#{index + 1}</span>
+                              <span className="font-medium text-sm sm:text-base truncate">{customer.name}</span>
+                            </div>
+                            <Badge variant={customer.balance >= 0 ? "default" : "destructive"} className="text-xs flex-shrink-0 ml-2">
+                              ₹{Math.abs(customer.balance).toLocaleString()}
+                            </Badge>
+                          </div>
+                        ))}
                     </div>
-                    <div className="flex justify-between items-center p-2 sm:p-3 bg-blue-50 rounded-lg">
-                      <span className="text-blue-700 font-medium text-sm sm:text-base">Net Balance</span>
-                      <span className={`font-bold text-sm sm:text-base ${netBalance >= 0 ? 'text-green-700' : 'text-red-700'}`}>
-                        ₹{Math.abs(netBalance).toLocaleString()}
-                      </span>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg sm:text-xl">Monthly Summary</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="flex justify-between items-center p-2 sm:p-3 bg-green-50 rounded-lg">
+                        <span className="text-green-700 font-medium text-sm sm:text-base">Total Credit</span>
+                        <span className="text-green-700 font-bold text-sm sm:text-base">₹{totalCredit.toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between items-center p-2 sm:p-3 bg-red-50 rounded-lg">
+                        <span className="text-red-700 font-medium text-sm sm:text-base">Total Debit</span>
+                        <span className="text-red-700 font-bold text-sm sm:text-base">₹{totalDebit.toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between items-center p-2 sm:p-3 bg-blue-50 rounded-lg">
+                        <span className="text-blue-700 font-medium text-sm sm:text-base">Net Balance</span>
+                        <span className={`font-bold text-sm sm:text-base ${netBalance >= 0 ? 'text-green-700' : 'text-red-700'}`}>
+                          ₹{Math.abs(netBalance).toLocaleString()}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center p-2 sm:p-3 bg-purple-50 rounded-lg">
+                        <span className="text-purple-700 font-medium text-sm sm:text-base">Inventory Value</span>
+                        <span className="text-purple-700 font-bold text-sm sm:text-base">₹{totalInventoryValue.toLocaleString()}</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center p-2 sm:p-3 bg-purple-50 rounded-lg">
-                      <span className="text-purple-700 font-medium text-sm sm:text-base">Inventory Value</span>
-                      <span className="text-purple-700 font-bold text-sm sm:text-base">₹{totalInventoryValue.toLocaleString()}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+          </div>
         </Tabs>
       </div>
 
